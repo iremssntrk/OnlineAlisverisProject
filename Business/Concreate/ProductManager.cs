@@ -1,6 +1,5 @@
 ﻿
 using Business.Abstract;
-using Business.BusinessAspect.Autofac;
 using Business.CCS;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
@@ -57,7 +56,6 @@ namespace Business.Concreate
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails(), Messages.ProductListed);
         }
 
-        [SecuredOperation("admin,product.add")]
         [ValidationAspect(typeof(ProductValidator))]  //typeof: ctor ile tip ataması yapılıyor attributelara
         [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
